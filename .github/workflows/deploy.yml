@@ -1,0 +1,30 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+        build:
+          runs-on: ubuntu-latest
+          steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v2
+      
+            - name: Set up Node.js
+              uses: actions/setup-node@v2
+              with:
+                node-version: 14
+      
+            - name: Set API Key
+              env:
+                OPENAI_API_KEY: ${{ secrets.API_KEY }}
+              run: |
+                echo "API_KEY=$OPENAI_API_KEY" >> $GITHUB_ENV
+      
+            - name: Install Dependencies
+              run: npm install
+      
+            - name: Build and Deploy
+              run: npm run deploy
+      

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Limas Chatbot</title>
+  <script type="module" src="main.js"></script>
+</head>
+<body>
+  <div class="box-questions">
+    <div class="header">
+      <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Montserrat&weight=900&size=30&pause=2000&color=8AEBF7&background=FFFFFF00&center=true&vCenter=true&random=false&width=300&height=60&lines=Lima's+ChatBot" alt="Typing SVG" /></a>
+    </div>
+    <p id="status"></p>
+    <div id="history">
+      <!-- Aqui vai o chat gerado conforme as respostas -->
+    </div>
+    <div class="footer">
+      <input type="text" id="message-input" placeholder="Pergunte aqui...">
+        <button class="btn-submit" id="btn-submit" onclick="sendMessage()"><img class="Imgenviar" src="imgs/enviar-mensagem.png"></button>
+      <button id="btn-clear-history" onclick="clearHistory(userId)">Limpar Histórico</button>
+      <a href="index.html"><img class="Imgenviar" src="imgs/saida.png" ></a>
+    </div>
+    <div id="openai-rights">
+      <p >Favor não usar com muita frequencia, estou pagando pela API</p>
+      <p >Todos os direitos reservados a OpenAI</p>
+    </div>
+    
+  </div>
+
+    <script>
+
+
+
+
+      
+       const message = document.getElementById('message-input');
+      const btnSubmit = document.getElementById('btn-submit');
+        const userId = localStorage.getItem('user_id');
+        function mostrarElementoPor5Segundos() {
+            const openaiRights = document.getElementById('openai-rights');
+            openaiRights.style.display = 'block';
+            btnSubmit.disabled = true;
+            btnSubmit.style.cursor = 'not-allowed'; // Alterar o cursor para 'not-allowed'
+            message.disabled = true; // Desabilitar a entrada de mensagem
+
+            setTimeout(function() {
+                openaiRights.style.display = 'none';
+                btnSubmit.disabled = false; // Restaurar o botão de envio
+                btnSubmit.style.cursor = 'pointer'; // Restaurar o cursor padrão
+                message.disabled = false; // Habilitar a entrada de mensagem
+            }, 7000); // 5000 milissegundos = 5 segundos
+        }
+
+        // Chame a função para iniciar a exibição temporizada
+        mostrarElementoPor5Segundos();
+    </script>
+</body>
+
+</html>

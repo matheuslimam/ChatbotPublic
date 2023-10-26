@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin</title>
+    <style>
+        :root{
+            --dark: #0c0c0c;
+            --white: #ffffff;
+            --purple: #9a0fbd81;
+            --gray: #949494;
+            --gray2: #cccccc;
+            --white2: #ffffff44;
+            --purple2: #9a0fbd;
+        }
+
+        body{
+            background-image: url('imgs/fundo.jpg');
+            background-size:cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--white);
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Estilo para o painel de administração */
+        .admin-panel {
+            background-color: var(--white2);
+            color: var(--dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            max-height: 800px;
+            width: 600px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .admin-header {
+            background-color: var(--purple);
+            color: var(--white);
+            border-radius: 10px 10px 0 0;
+            font-size: 1.4rem;
+            padding-top: 10px;
+        }
+
+        .admin-footer {
+            background-color: var(--purple);
+            border-radius: 0 0 10px 10px;
+            padding: 1rem;
+        }
+
+        /* Estilo para os controles do painel */
+        .admin-controls {
+            margin-top: 20px;
+            margin-bottom: 15px;
+            color: rgb(0, 124, 207);
+            font-weight: 700;
+            
+        }
+
+        .admin-input {
+            background-color: var(--purple);
+            color: var(--white);
+            width: 50%;
+            border: none;
+            outline: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .admin-input:focus {
+            background-color: var(--purple2);
+        }
+
+        .admin-slider {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 10px;
+            background: var(--purple);
+            outline: none;
+            border-radius: 5px;
+        }
+
+        .admin-slider::-webkit-slider-thumb {
+            color: rgb(0, 124, 207);
+            font-weight: 700;
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--white);
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .admin-select {
+            background-color: var(--purple);
+            color: var(--white);
+            width: 50%;
+            border: none;
+            outline: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .admin-select:focus {
+            background-color: var(--purple2);
+        }
+
+        .admin-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .admin-button {
+            background-color: rgba(255, 255, 255, 0);
+            color: rgb(0, 124, 207);
+            font-weight: 700;
+            border: none;
+            padding: 15px;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+
+        .admin-button:hover {
+            cursor: pointer;
+            border-radius: 25px;
+            transition: 0.5s;
+            background-color: var(--purple2);
+        }
+
+        #temperatureValue{
+            color: rgb(255, 255, 255);
+        }
+
+        .temp{
+            color: rgb(255, 255, 255);
+        }
+
+       
+    </style>
+</head>
+<body>
+    <div class="admin-panel">
+        <div class="admin-header">
+            <h1>Administração do Chat Bot</h1>
+        </div>
+
+        <div class="admin-controls">
+            <label for="temperature" class="temp">Ajustar Temperatura das respostas:</label>
+            <input type="range" id="temperature" class="admin-slider" min="0" max="1" step="0.1" value="0.5" onchange="adjustTemperature()">
+            <p id="temperatureValue">Temperatura: 0.5</p> <!-- Elemento para exibir o valor da temperatura -->
+        </div>
+
+        <div class="admin-controls">
+            <label for="model">Selecionar Modelo:</label>
+            <select id="model" class="admin-select" onchange="changeModel()">
+                <option value="text-davinci-003">text-davinci-003</option>
+                <option value="text-davinci-002">text-davinci-002</option>
+                <option value="gpt-3.5-turbo-instruct">gpt-3.5-turbo-instruct</option>
+                <option value="gpt-3.5-turbo-instruct-0914">gpt-3.5-turbo-instruct-0914</option>
+                <option value="text-curie-001">text-curie-001</option>
+            </select>
+        </div>
+
+        <div class="admin-buttons">
+            <button onclick="clearHistory('user_id')" class="admin-button">Limpar Histórico</button>
+            <button onclick="backToChat()" class="admin-button">Usar o chat</button>
+        </div>
+    </div>
+
+
+
+    <script>
+        // Adicione suas funções JavaScript aqui
+
+        // Função para alterar o modelo do chat bot
+        function changeModel() {
+            const selectedModel = document.getElementById("model").value;
+            console.log(selectedModel)
+            localStorage.setItem('model', selectedModel);
+        }
+
+        // Função para ajustar a temperatura do chat bot
+        function adjustTemperature() {
+            const selectedTemperature = document.getElementById("temperature").value;
+            console.log(selectedTemperature)
+            document.getElementById("temperatureValue").textContent = `Temperatura: ${selectedTemperature}`; // Atualize o valor da temperatura
+            localStorage.setItem('temp', selectedTemperature);
+        }
+
+        function backToChat() {
+            window.location.href = "loading.html";
+        }
+
+        // Resto do seu código JavaScript existente
+    </script>
+</body>
+</html>

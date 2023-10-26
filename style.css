@@ -1,0 +1,133 @@
+:root{
+  --dark: #0c0c0c;
+  --white: #ffffff;
+  --purple: #9a0fbd8e;
+  --gray: #585757;
+  --gray2: #928787;
+  --white2: #ffffff44;
+  --purple2:rgba(154, 15, 189, 0.664);
+  --purple3: #5a0fbd9f;
+}
+
+body{
+  background-image: url('imgs/fundo.jpg');
+  background-size:cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.box-questions{
+  margin-top: 20px;
+  margin-bottom: 15px;
+  background-color: var(--white2);
+  color: var(--dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 800px;
+  width: 600px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.header{
+  background-color: var(--purple);
+  color: var(--white);
+  border-radius: 10px 10px 0 0;
+  font-size: 1.4rem;
+  padding-top: 10px ;
+}
+
+.footer{
+  background-color: var(--purple);
+  border-radius: 0 0 10px 10px;
+  padding: 1rem;
+}
+
+input{
+  background-color: var(--purple);
+  color: var(--white);
+  width: 50%;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.Imgenviar{
+  margin-block: -9px;
+  height: 30px;
+  width: 30px;
+
+}
+
+button{
+  background-color: rgba(255, 255, 255, 0);
+  color:rgb(0, 124, 207);
+  font-weight: 700;
+  border: none;
+  padding: 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+button:hover{
+  cursor: pointer;
+  border-radius: 25px;
+  transition: .5s;
+  background-color: var(--purple2);
+}
+
+#status{
+  color: var(--white);
+}
+
+#openai-rights{
+  color: var(--white);
+}
+
+
+#history{
+  padding: 1rem;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+}
+
+.box-my-message{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.box-response-message{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.my-message,
+.response-message{
+  padding: 1rem;
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
+  margin: 0;
+}
+
+.my-message{
+  text-align: right;
+  background-color: var(--purple2);
+}
+
+.response-message{
+  text-align: left;
+  background-color: var(--purple3);
+}
+

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página de Carregamento</title>
+    <style>
+        body {
+            background-image: url("imgs/xunhuanhuan3.gif");
+            background-size:60%;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            text-align: center;
+
+        }
+
+        #loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+
+        #welcome-message {
+    font-size: 24px;
+    margin-top: -280px;
+    color: #7578aa;
+    opacity: 0; 
+    transform: translateY(-20px); 
+
+
+    animation: fade-in 1.5s ease-in-out forwards;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div id="loading-container">
+        <div id="welcome-message"></div>
+    </div>
+
+    <script>
+        
+        const userId = localStorage.getItem('user_id');
+        const userName = localStorage.getItem('user_name');
+        console.log(userName);
+
+        if(userName !== null){
+      
+        let nome = 1;
+        //nome == 1 debug
+        //
+        // Verificar se o usuário já viu a mensagem de boas-vindas
+        const hasSeenWelcomeMessage = getCookie("has_seen_welcome_message");
+        if (userId && userName && !hasSeenWelcomeMessage) {
+            // O usuário já entrou e não viu a mensagem de boas-vindas
+
+            // Mostrar a mensagem de boas-vindas
+            const welcomeMessage = document.getElementById("welcome-message");
+            welcomeMessage.textContent = "Seja bem-vindo," + userName + " estamos criando sua conta " ;
+
+            // Salvar um cookie indicando que o usuário viu a mensagem
+            setCookie("has_seen_welcome_message", "true", 365); // Expira em 1 ano
+
+            // Redirecionar após 5 segundos
+            setTimeout(function() {
+                window.location.href = "main.html";
+            }, 5000);
+        } else {
+            // O usuário não entrou antes, pode ser a primeira vez
+            // Redirecionar diretamente para a página principal
+            const welcomeMessage = document.getElementById("welcome-message");
+            welcomeMessage.textContent = "Seja bem-vindo de volta," + userName;
+
+            setTimeout(function() {
+                window.location.href = "main.html";
+            }, 3500);
+
+        }
+
+        // Função para definir um cookie
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        // Função para obter um cookie
+        function getCookie(name) {
+            const cname = name + "=";
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(cname) === 0) {
+                    return c.substring(cname.length, c.length);
+                }
+            }
+            return "";
+        }      
+        }
+        else{
+            window.location.href = "index.html";
+        }
+
+    </script>
+</body>
+</html>
