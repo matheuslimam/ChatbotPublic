@@ -1,10 +1,11 @@
 import config from './config.js';
 const apiKey = config.apiKey;
-console.log(apiKey);
+//console.log(apiKey);
 
 const userId = localStorage.getItem('user_id');
 document.getElementById('btn-clear-history').addEventListener('click', async () => {
     clearHistory(userId);
+    console.log(userId);
   });
 
 document.getElementById('btn-submit').addEventListener('click', async () => {
@@ -188,9 +189,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function clearHistory(user) {
-    document.cookie = `${user}ChatHistory=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    document.cookie = `${user}ChatHistory=; expires=Thu, 02 Jan 1970 00:00:00 UTC; path=/;`;
     const historyBox = document.getElementById('history');
     historyBox.innerHTML = '';
-    console.log("apagou");
+    //console.log(document.cookie);
+    //console.log(user);
+
 }
 
